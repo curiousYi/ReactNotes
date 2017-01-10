@@ -5,6 +5,11 @@ const chalk = require('chalk');
 
 router.post('/', (req, res) =>{
     //create a user account
+
+    //need to validate that the user name is unique
+    //need to validate that the user name works
+    //need to validate that the password is specific
+
     res.send('you hit the user post route')
 
 })

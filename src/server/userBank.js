@@ -9,6 +9,7 @@ for(var i = 0; i < 2; i++){
     let dummyUser = {
         firstName: fakeData.getFirstName(),
         lastName: fakeData.getLastName(),
+        image: faker.image.avatar(),
         age: fakeData.getFakeAge(),
         address: fakeData.getFakeAddress(),
         tweets: []
