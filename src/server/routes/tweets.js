@@ -3,6 +3,16 @@ const tweetBank = require('../tweetBank');
 const chalk = require('chalk');
 
 
+router.use('/', (req, res, next) =>
+    {
+        if(req.session.loggedIn === true){
+            next()
+        }
+        else{
+            res.send('Uh Uh Uh you didnt say the magic word');
+        }
+    })
+
 router.post('/', (req, res) =>{
     //create a user account
     res.send('you hit the tweet post route')

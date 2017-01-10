@@ -12,16 +12,16 @@ router.post('/', (req, res) =>{
     console.log(chalk.green('you hit this'));
     console.log(req.body);
 
-    res.send('you hit the user post route')
-
-})
-
-router.get('/', (req,res) => {
-    //check if they're logged in
-    res.send('you hit the user get route')
+    let userID = userBank.generateID(req.body.firstName, req.body.lastName);
+    //toDo do not set this twice right? otherwise kind of pointless
+    req.session.loggedIn = true;
+    req.session.userID = userID;
+    console.log('hey there ', req.session);
+    res.send('you are good to go');
 })
 
 router.delete('/', (req, res) =>{
+
     //delete user
     //delete associated tweets
     res.send('you hit the user delete route')

@@ -4,7 +4,7 @@ const path = require('path');
 const logger = require('morgan');
 const session = require('express-session');
 const chalk = require('chalk');
-
+const userBank = require('../userBank');
 
 module.exports = function(app){
 
@@ -17,10 +17,18 @@ module.exports = function(app){
         }
     ));
 
+    //TO DO possibly remove the commented out code below
+    //setting up session
     app.use(function (req, res, next) {
-      console.log('New Session', req.session);
+      if(req.session.loggedIn){
+        console.log(chalk.blue('koOL we are logged in'));
+      }
+      console.log('hey there ', req.session.loggedIn);
+      console.log('does it pass our conditions', req.session.loggedIn === true)
       next();
     });
+
+
     const publicFilesPath = path.resolve('./build');
     console.log(publicFilesPath)
     // express_static for statically serving up files

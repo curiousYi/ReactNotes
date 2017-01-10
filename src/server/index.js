@@ -17,8 +17,9 @@ const path = require('path');
 
 // app.use(require('webpack-hot-middleware')(compiler));
 
+//
 
-//configuration middleware
+//middleware for body-parser, static serving of files,etc.
 configMiddle(app);
 
 //routing middleware
