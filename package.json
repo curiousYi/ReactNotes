@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/curiousYi/simpleCRUD#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-env": "^1.1.7",
@@ -32,6 +33,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "faker": "^3.1.0",
     "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

@@ -18,13 +18,13 @@ module.exports = function(app){
     ));
 
     app.use(function (req, res, next) {
-      console.log(chalk.green('New Session', req.session));
+      console.log('New Session', req.session);
       next();
     });
-    const publicFilesPath = path.resolve('../../client');
-
+    const publicFilesPath = path.resolve('./build');
+    console.log(publicFilesPath)
     // express_static for statically serving up files
-    app.use('/public', express.static(publicFilesPath));
+    app.use('/build', express.static(publicFilesPath));
 
     // Parse our POST and PUT bodies.
     app.use(bodyParser.json());

@@ -23,12 +23,13 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  },
-   plugins: [
-    new ExtractTextPlugin('../stylesheets/style.css', {
-      allChunks: true
-    })
-  ]
+  }
+  // ,
+  //  plugins: [
+  //   new ExtractTextPlugin('../stylesheets/style.css', {
+  //     allChunks: true
+  //   })
+  // ]
 };
 
 

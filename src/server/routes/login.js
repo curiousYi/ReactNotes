@@ -9,6 +9,8 @@ router.post('/', (req, res) =>{
     //need to validate that the user name is unique
     //need to validate that the user name works
     //need to validate that the password is specific
+    console.log(chalk.green('you hit this'));
+    console.log(req.body);
 
     res.send('you hit the user post route')
 

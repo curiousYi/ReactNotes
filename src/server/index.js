@@ -3,7 +3,7 @@ const app = express();
 const chalk = require('chalk');
 const configMiddle = require('./configure');
 const router = require('./routes');
-
+const path = require('path');
 
 // front end component
 // const webpack = require('webpack');
@@ -24,8 +24,8 @@ configMiddle(app);
 //routing middleware
 app.use(router);
 
-app.get('/*', (req, res) =>{
-    res.sendFile('index.html');
+app.get('/', (req, res) =>{
+    res.sendFile(path.resolve('src/client/index.html'));
 });
 
 app.listen(3000, function(){

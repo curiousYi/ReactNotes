@@ -2,14 +2,18 @@
 const sha1 = require('sha1');
 const fakeData = require('./fakeData');
 
-const userBank = {};
+const userBank = {
+    store: {},
+    generateID: (firstName, lastName) => {return sha1(firstName +lastName)}
+
+};
 
 //generate random users
-for(var i = 0; i < 2; i++){
+for(var i = 0; i < 5; i++){
     let dummyUser = {
         firstName: fakeData.getFirstName(),
         lastName: fakeData.getLastName(),
-        image: faker.image.avatar(),
+        image: fakeData.getImage(),
         age: fakeData.getFakeAge(),
         address: fakeData.getFakeAddress(),
         tweets: []
@@ -19,38 +23,9 @@ for(var i = 0; i < 2; i++){
         dummyUser.tweets.push(fakeData.getFakeTweet());
     }
 
-    let uniqId = sha1(dummyUser.firstName+dummyUser.lastName)
+    let uniqId = userBank.generateID(dummyUser.firstName+dummyUser.lastName);
 
-    userBank[uniqId] = dummyUser;
+    userBank.store[uniqId] = dummyUser;
 }
 
 module.exports = userBank
-
-//assign associated tweets
-
-
-// const _ = require('lodash');
-// const Faker = require('faker');
-
-// const tweetsData ={};
-
-// const add = (name, content) =>  {
-//   data.push({ name: name, content: content, id: id.toString()});
-//   id++;
-// }
-
-// const list = () => {
-//   return _.cloneDeep(data);
-// }
-
-// const find = (properties) => {
-//   return _.cloneDeep(_.filter(data, properties));
-// }
-
-
-
-// module.exports = { add: add, list: list, find: find };
-
-// for (var i = 0; i < 10; i++) {
-//   module.exports.add( getFakeName(), getFakeTweet() );
-// }
