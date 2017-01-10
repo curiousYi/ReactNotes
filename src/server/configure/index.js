@@ -21,9 +21,10 @@ module.exports = function(app){
       console.log(chalk.green('New Session', req.session));
       next();
     });
+    const publicFilesPath = path.resolve('../../client');
 
     // express_static for statically serving up files
-    app.use('/public', express.static('/Users/yichao/Desktop/projects/toDoList/client'));
+    app.use('/public', express.static(publicFilesPath));
 
     // Parse our POST and PUT bodies.
     app.use(bodyParser.json());
