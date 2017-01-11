@@ -5,7 +5,7 @@ React and Express.
 
 ## Major To-Dos
 * Set-up Redux
-* Set-up CSS plugins for webpack + other features like code-splitting
+* Set-up CSS plugins for webpack + other features like code-splitting. Put Materialize in separate CSS file.
 * Hook up a database using Sequelize+Postgres
 * Add authentication
 * Use https

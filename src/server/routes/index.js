@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const loginRouter = require('./login');
-const tweetsRouter = require('./tweets');
+const notesRouter = require('./tweets');
 
 router.use('/login', loginRouter);
 
-router.use('/tweets', tweetsRouter);
+router.use('/notes', notesRouter);
 
 
 module.exports = router;
