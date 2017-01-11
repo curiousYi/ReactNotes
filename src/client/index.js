@@ -19,7 +19,7 @@ class App extends Component {
         this.state = {
             firstName: "",
             lastName: "",
-            // image: faker.image.avatar(),   //will automatically generate fake images for now
+            imgUrl:"",
             age: "",
             address: "",
             loggedIn: false,
@@ -49,11 +49,11 @@ class App extends Component {
           data: loginObj
         }).then(function (response) {
             //we do not directly mutate the state because that's bad in react :/
-            console.log('we got a response back');
-            console.log(response)
+            // console.log('we got a response back');
+            // console.log(response)
             this.setState({loggedIn: response.data.loggedIn, userID: response.data.userID})
-            console.log('state before setting state')
-            console.log(this.state)
+            // console.log('state before setting state')
+            // console.log(this.state)
           }.bind(this))   //trying to resolve this issue
 
       }
