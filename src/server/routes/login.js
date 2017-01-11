@@ -16,8 +16,7 @@ router.post('/', (req, res) =>{
     //toDo do not set this twice right? otherwise kind of pointless
     req.session.loggedIn = true;
     req.session.userID = userID;
-    console.log('hey there ', req.session);
-    res.send('you are good to go');
+    res.send(req.session); //sending back the cookie
 })
 
 router.delete('/', (req, res) =>{

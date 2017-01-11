@@ -3,22 +3,10 @@ import React, {Component} from 'react';
 class loginForm extends React.Component {
   constructor(props) {
     super(props);
-
-    this.submitLogin = this.submitLogin.bind(this);
-
   }
-
-  submitLogin(event) {
-    alert('Something was submitted ' + this.state.value);
-    event.preventDefault();
-  }
-
 
   render() {
-
-//event.target.id
-//event
-
+    console.log('here are my cookies', document.cookie)
     console.log("here are the props ", this.props )
     const buttonStyle = {
         width: '200px',

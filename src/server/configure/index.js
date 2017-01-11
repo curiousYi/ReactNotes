@@ -23,8 +23,9 @@ module.exports = function(app){
       if(req.session.loggedIn){
         console.log(chalk.blue('koOL we are logged in'));
       }
-      console.log('hey there ', req.session.loggedIn);
-      console.log('does it pass our conditions', req.session.loggedIn === true)
+      else{
+        console.log(chalk.red('an unloggedIn user is entering'));
+      }
       next();
     });
 

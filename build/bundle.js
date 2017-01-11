@@ -71,6 +71,10 @@
 
 	var _loginForm2 = _interopRequireDefault(_loginForm);
 
+	var _notesList = __webpack_require__(206);
+
+	var _notesList2 = _interopRequireDefault(_notesList);
+
 	var _axios = __webpack_require__(181);
 
 	var _axios2 = _interopRequireDefault(_axios);
@@ -105,7 +109,9 @@
 	            lastName: "",
 	            // image: faker.image.avatar(),   //will automatically generate fake images for now
 	            age: "",
-	            address: ""
+	            address: "",
+	            loggedIn: false,
+	            userID: ""
 	        };
 
 	        _this.handleChange = _this.handleChange.bind(_this);
@@ -126,60 +132,68 @@
 	            event.preventDefault(); //prevents the form from reloading after hitting the submit button
 	            //use axios or something later on
 	            console.log('we are submitting!');
-
-	            // fetch('http://localhost:3000/login', {
-	            //     method: 'POST',
-	            //     body: this.state
-	            // }).then(function(response) {
-	            //     console.log('We got a response');
-	            //     console.log(response);
-	            // }).catch(function(err) {
-	            //     console.log("uh oh we fucked up")
-	            // });
+	            var loginObj = this.makeLoginObj();
+	            //to do figure this out
 	            (0, _axios2.default)({
 	                method: 'post',
 	                url: '/login',
-	                data: this.state
+	                data: loginObj
 	            }).then(function (response) {
+	                //we do not directly mutate the state because that's bad in react :/
+	                console.log('we got a response back');
 	                console.log(response);
-	            }).catch(function (error) {
-	                console.log(error);
-	            });
-
-	            // let data = {
-	            //       method: 'POST',
-	            //       credentials: 'same-origin',
-	            //       mode: 'same-origin',
-	            //       body: JSON.stringify(this.state),
-	            //       headers: {
-	            //         'Accept':       'application/json',
-	            //         'Content-Type': 'application/json',
-	            //       }
-	            // }
-
-	            // fetch('http://localhost:3000/login', data)
-	            //         .then(response => response.json())  // promise
-	            //         .then(json => dispatch(receiveAppos(json)))
+	                this.setState({ loggedIn: response.data.loggedIn, userID: response.data.userID });
+	                console.log('state before setting state');
+	                console.log(this.state);
+	            }.bind(this)); //trying to resolve this issue
+	        }
+	    }, {
+	        key: 'makeLoginObj',
+	        value: function makeLoginObj() {
+	            var obj = {
+	                firstName: this.state.firstName,
+	                lastName: this.state.lastName,
+	                age: this.state.age,
+	                address: this.state.address
+	            };
+	            return obj;
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_header2.default, null),
-	                _react2.default.createElement(_loginForm2.default, {
-	                    handleSubmit: this.handleSubmit,
-	                    firstName: this.state.firstName,
-	                    lastName: this.state.lastName,
-	                    age: this.state.age,
-	                    address: this.state.address,
-	                    handleChange: this.handleChange
-	                })
-	            )
-	            //use collections from materialize
 
-	            ;
+	            if (!this.state.loggedIn) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(_header2.default, null),
+	                    _react2.default.createElement(_loginForm2.default, {
+	                        handleSubmit: this.handleSubmit,
+	                        firstName: this.state.firstName,
+	                        lastName: this.state.lastName,
+	                        age: this.state.age,
+	                        address: this.state.address,
+	                        handleChange: this.handleChange
+	                    })
+	                )
+	                //use collections from materialize
+
+	                ;
+	            } else {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(_header2.default, null),
+	                    _react2.default.createElement(_notesList2.default, {
+	                        handleSubmit: this.handleSubmit,
+	                        firstName: this.state.firstName,
+	                        lastName: this.state.lastName,
+	                        age: this.state.age,
+	                        address: this.state.address,
+	                        handleChange: this.handleChange
+	                    })
+	                );
+	            }
 	        }
 	    }]);
 
@@ -21695,27 +21709,15 @@
 	  function loginForm(props) {
 	    _classCallCheck(this, loginForm);
 
-	    var _this = _possibleConstructorReturn(this, (loginForm.__proto__ || Object.getPrototypeOf(loginForm)).call(this, props));
-
-	    _this.submitLogin = _this.submitLogin.bind(_this);
-
-	    return _this;
+	    return _possibleConstructorReturn(this, (loginForm.__proto__ || Object.getPrototypeOf(loginForm)).call(this, props));
 	  }
 
 	  _createClass(loginForm, [{
-	    key: 'submitLogin',
-	    value: function submitLogin(event) {
-	      alert('Something was submitted ' + this.state.value);
-	      event.preventDefault();
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
 
-	      //event.target.id
-	      //event
-
+	      console.log('here are my cookies', document.cookie);
 	      console.log("here are the props ", this.props);
 	      var buttonStyle = {
 	        width: '200px',
@@ -23285,6 +23287,68 @@
 	  };
 	};
 
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var notesList = function (_React$Component) {
+	  _inherits(notesList, _React$Component);
+
+	  function notesList(props) {
+	    _classCallCheck(this, notesList);
+
+	    return _possibleConstructorReturn(this, (notesList.__proto__ || Object.getPrototypeOf(notesList)).call(this, props));
+	  }
+
+	  _createClass(notesList, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('here are my cookies', document.cookie);
+	      console.log("here are the props ", this.props);
+	      var buttonStyle = {
+	        width: '200px',
+	        height: '200px',
+	        margin: 'auto',
+	        padding: '0%',
+	        position: 'relative'
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          ' not loggedin'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return notesList;
+	}(_react2.default.Component);
+
+	exports.default = notesList;
 
 /***/ }
 /******/ ]);
