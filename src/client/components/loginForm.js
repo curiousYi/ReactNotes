@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class loginForm extends React.Component {
+class loginForm extends Component {
   constructor(props) {
     super(props);
   }
@@ -48,7 +48,7 @@ class loginForm extends React.Component {
 
             <div className="row" style={buttonStyle}>
                   <button className="btn waves-effect waves-light" type="submit" name="action">
-                    <i className="material-icons right">Submit</i>
+                    <i className="material-icons right">LOGIN</i>
                   </button>
             </div>
 

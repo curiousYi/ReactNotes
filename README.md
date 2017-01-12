@@ -23,6 +23,8 @@ React and Express.
 * enable source maps  so easier to debug
 * clearly separate my production and development cycles e.g. adding loaders to strip comments uglify code etc
 * figure out how my axios hack resolved this line 56 index.js client
+* Be able to PUT/Modify existing posts
+* Generalize the handleChange method in src/client/components/index.js generalize it so that it can handle an event from editting existing resources and posting a new note
 
 #### Installation
 Git clone the repo then run the following

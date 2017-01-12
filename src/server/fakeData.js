@@ -18,7 +18,7 @@ const getFakeTweet = () => {
 };
 
 const getImageUrl = () =>{
-  return Faker.image.imageUrl();
+  return Faker.image.avatar();
 }
 //address
 const getFakeAge = () =>{

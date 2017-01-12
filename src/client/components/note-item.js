@@ -1,21 +1,20 @@
 import React from 'react';
+import Faker from 'faker';
 
-const noteItem = ({name, avatar, content }) => {
-    const imgUrl = video.snippet.thumbnails.default.url;
+// const NoteItem = ({note, onNoteSelect }) => {
+
+const NoteItem = ({note}) => {
+    // const imgUrl = video.snippet.thumbnails.default.url;
 
     return (
-        <li onClick={() => onVideoSelect(video)} className="list-group-item">
-            <div className="video-list media">
-                <div className="media-left">
-                    <img className="media-object" src={imgUrl}/>
-                </div>
-
-                <div className="media-body">
-                    <div className="media-heading"> {video.snippet.title}</div>
-                </div>
-            </div>
+        <li className="collection-item avatar">
+          <img src={Faker.image.avatar()} alt="" className="circle"/>
+          <span className="title">Yi Chao</span>
+          <p>{Faker.lorem.sentence()}
+          </p>
+          <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
         </li>
     )
 }
 
-export default VideoListItem
+export default NoteItem
