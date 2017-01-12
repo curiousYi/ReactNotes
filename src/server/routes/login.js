@@ -23,6 +23,8 @@ router.get('/', (req, res)=> {
 
     req.session.loggedIn = true;
     req.session.userID = userID;
+
+    //
     res.send(req.session); //sending back the cookie
 })
 

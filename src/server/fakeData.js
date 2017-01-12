@@ -13,7 +13,7 @@ const getLastName = () =>{
   return Faker.name.lastName();
 };
 
-const getFakeTweet = () => {
+const getFakeNote = () => {
   return Faker.lorem.sentence();
 };
 
@@ -42,6 +42,6 @@ module.exports = {
     getLastName: getLastName,
     getFakeAge: getFakeAge,
     randArrayEl: randArrayEl,
-    getFakeTweet: getFakeTweet,
+    getFakeNote: getFakeNote,
     getImageUrl: getImageUrl
 }

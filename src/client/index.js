@@ -43,12 +43,17 @@ class App extends Component {
             console.log(response);
             if(response.data.loggedIn){
                 this.setState({loggedIn: response.data.loggedIn})
+
+                //fetch resources
+
+                //set the state
             }
           }.bind(this))   //trying to resolve this issue
       }
 
 
       handleChange(eventId, eventValue) {
+        event.preventDefault();
         console.log('OVER HERE IN RIVER CITY ', eventId);
         console.log('EMPIRE STRIKES BACK ', eventValue);
         console.log('heres the state', this.state);
@@ -88,6 +93,11 @@ class App extends Component {
             address: this.state.address
           };
           return obj
+      }
+
+      //maybe make this generalizable
+      submitNewNote(){
+
       }
 
     render (){
