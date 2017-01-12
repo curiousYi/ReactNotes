@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const tweetBank = require('../tweetBank');
+const noteBank = require('../noteBank');
 const chalk = require('chalk');
 
 

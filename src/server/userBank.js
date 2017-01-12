@@ -16,12 +16,12 @@ for(var i = 0; i < 5; i++){
         imageUrl: fakeData.getImageUrl(),
         age: fakeData.getFakeAge(),
         address: fakeData.getFakeAddress(),
-        tweets: []
+        notes: []
     }
 
     for(var j = 0; j < 5; j++){
         let fakeNote = fakeData.getFakeNote()
-        dummyUser.tweets.push(fakeNote);
+        dummyUser.notes.push(fakeNote);
         let newObj = {firstName: dummyUser.firstName, lastName: dummyUser.lastName, note: fakeNote}
         userBank.notesByTime.push(newObj);
     }

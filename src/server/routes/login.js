@@ -23,7 +23,7 @@ router.get('/', (req, res)=> {
 
     req.session.loggedIn = true;
     req.session.userID = userID;
-
+    req.session.notes = userBank.notesByTime;
     //
     res.send(req.session); //sending back the cookie
 })

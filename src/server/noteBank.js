@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Faker = require('faker');
 
-const tweetsData ={};
+const notesData ={};
 
 const add = (name, content) =>  {
   data.push({ name: name, content: content, id: id.toString()});
