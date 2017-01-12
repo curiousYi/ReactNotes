@@ -162,25 +162,29 @@
 	            event.preventDefault(); //prevents the form from reloading after hitting the submit button
 	            //use axios or something later on
 	            console.log('we are submitting!');
-	            var loginObj = this.makeLoginObj();
+	            var userObj = this.makeUserObj();
 	            //to do figure this out
 
 	            (0, _axios2.default)({
 	                method: 'post',
 	                url: '/login',
-	                data: loginObj
+	                data: userObj
 	            }).then(function (response) {
 	                //we do not directly mutate the state because that's bad in react :/
 	                // console.log('we got a response back');
-	                // console.log(response)
-	                this.setState({ loggedIn: response.data.loggedIn, userID: response.data.userID });
+	                console.log(response);
+	                this.setState({ loggedIn: response.data.loggedIn,
+	                    userID: response.data.userID,
+	                    notesByTime: response.data.notesByTime
+	                });
 	                // console.log('state before setting state')
 	                // console.log(this.state)
+	                this.forceUpdate();
 	            }.bind(this)); //trying to resolve this issue
 	        }
 	    }, {
-	        key: 'makeLoginObj',
-	        value: function makeLoginObj() {
+	        key: 'makeUserObj',
+	        value: function makeUserObj() {
 	            var obj = {
 	                firstName: this.state.firstName,
 	                lastName: this.state.lastName,
@@ -231,7 +235,7 @@
 	                        notesByTime: this.state.notesByTime
 	                    }),
 	                    _react2.default.createElement(_CreateNoteFooter2.default, {
-	                        handleChange: this.handleChange
+	                        submitNewNote: this.submitNewNote
 	                    })
 	                );
 	            }
@@ -93483,7 +93487,7 @@
 	        { className: "row" },
 	        _react2.default.createElement(
 	          "form",
-	          { className: "col s12", onSubmit: this.props.handleSubmit },
+	          { className: "col s12", onSubmit: this.props.submitNewNote },
 	          _react2.default.createElement(
 	            "div",
 	            { className: "input-field col s10" },

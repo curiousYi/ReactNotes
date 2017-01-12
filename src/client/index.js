@@ -69,25 +69,29 @@ class App extends Component {
         event.preventDefault();  //prevents the form from reloading after hitting the submit button
         //use axios or something later on
         console.log('we are submitting!');
-        let loginObj = this.makeLoginObj();
+        let userObj = this.makeUserObj();
         //to do figure this out
 
         axios({
           method: 'post',
           url: '/login',
-          data: loginObj
+          data: userObj
           }).then(function (response) {
             //we do not directly mutate the state because that's bad in react :/
             // console.log('we got a response back');
-            // console.log(response)
-            this.setState({loggedIn: response.data.loggedIn, userID: response.data.userID})
+            console.log(response)
+            this.setState({loggedIn: response.data.loggedIn,
+              userID: response.data.userID,
+              notesByTime: response.data.notesByTime
+            });
             // console.log('state before setting state')
             // console.log(this.state)
+            this.forceUpdate();
           }.bind(this))   //trying to resolve this issue
 
       }
 
-      makeLoginObj(){
+      makeUserObj(){
           let obj = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -135,7 +139,7 @@ class App extends Component {
                             notesByTime = {this.state.notesByTime}
                         />
                         <CreateNoteFooter
-                            handleChange = {this.handleChange}
+                            submitNewNote = {this.submitNewNote}
                         />
             </div>
 
