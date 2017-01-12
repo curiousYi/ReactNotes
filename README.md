@@ -26,6 +26,7 @@ React and Express.
 * Be able to PUT/Modify existing posts
 * Generalize the handleChange method in src/client/components/index.js generalize it so that it can handle an event from editting existing resources and posting a new note
 * Need to be able to delete the users and modify or whatever since we have the routes for those or whatever
+* Handle the issue where if there's a collision that they have to use a different name or username
 
 #### Installation
 Git clone the repo then run the following
