@@ -116,12 +116,13 @@
 	            address: "",
 	            loggedIn: false,
 	            userID: "",
-	            newPost: "",
+	            newNote: "",
 	            notesByTime: []
 	        };
 
 	        _this.handleChange = _this.handleChange.bind(_this);
 	        _this.handleSubmit = _this.handleSubmit.bind(_this);
+	        _this.submitNewNote = _this.submitNewNote.bind(_this);
 	        return _this;
 	    }
 
@@ -179,7 +180,6 @@
 	                });
 	                // console.log('state before setting state')
 	                // console.log(this.state)
-	                this.forceUpdate();
 	            }.bind(this)); //trying to resolve this issue
 	        }
 	    }, {
@@ -198,7 +198,23 @@
 
 	    }, {
 	        key: 'submitNewNote',
-	        value: function submitNewNote() {}
+	        value: function submitNewNote() {
+	            // event.preventDefault()
+
+	            var newNoteObj = this.makeUserObj();
+	            newNoteObj.newNote = this.state.newNote;
+	            console.log('meesa say here da events', newNoteObj);
+	            (0, _axios2.default)({
+	                method: 'post',
+	                url: '/notes',
+	                data: newNoteObj
+	            }).then(function (response) {
+
+	                this.setState({
+	                    notesByTime: response.data.notesByTime
+	                });
+	            }.bind(this)); //trying to resolve this issue
+	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -235,7 +251,8 @@
 	                        notesByTime: this.state.notesByTime
 	                    }),
 	                    _react2.default.createElement(_CreateNoteFooter2.default, {
-	                        submitNewNote: this.submitNewNote
+	                        submitNewNote: this.submitNewNote,
+	                        handleChange: this.handleChange
 	                    })
 	                );
 	            }
@@ -93491,7 +93508,7 @@
 	          _react2.default.createElement(
 	            "div",
 	            { className: "input-field col s10" },
-	            _react2.default.createElement("input", { placeholder: "Content", id: "newPost", type: "text", value: this.props.firstName, onChange: function onChange(event) {
+	            _react2.default.createElement("input", { placeholder: "Content", id: "newNote", type: "text", value: this.props.firstName, onChange: function onChange(event) {
 	                return _this2.props.handleChange(event.target.id, event.target.value);
 	              } })
 	          ),

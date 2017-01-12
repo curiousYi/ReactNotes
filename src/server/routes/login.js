@@ -17,7 +17,8 @@ router.post('/', (req, res) => {
         lastName: req.body.lastName,
         imageUrl: fakeData.getImageUrl(), //make this a real image or whatever
         age: req.body.age,
-        address: req.body.address
+        address: req.body.address,
+        notes: []
     }
     userBank.store[userID] = userObj;
     //TODO do not set this twice right? otherwise kind of pointless

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const noteBank = require('../noteBank');
 const chalk = require('chalk');
+const userBank = require('../userBank');
 
 
 router.use('/', (req, res, next) =>
@@ -15,8 +16,26 @@ router.use('/', (req, res, next) =>
 
 router.post('/', (req, res) =>{
     //create a user account
-    res.send('you hit the tweet post route')
 
+    let userID = userBank.generateID(req.body.firstName, req.body.lastName);
+
+    if(userBank.store[userID]){
+        let user = userBank.store[userID]
+        let newNoteByTime = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            note: req.body.newNote,
+            imageUrl: user.imageUrl
+        }
+        userBank.notesByTime.push(newNoteByTime);
+        userBank.store[userID].notes.push(req.body.newNote);
+        req.session.notesByTime = userBank.notesByTime;
+        console.log(chalk.green('examine thingss '), req.session);
+        res.send(req.session); //sending back the cookie
+    }
+    else{
+        res.sendStatus(401);
+    }
 })
 
 router.get('/', (req,res) => {

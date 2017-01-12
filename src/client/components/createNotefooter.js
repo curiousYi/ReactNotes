@@ -12,7 +12,7 @@ class CreateNoteFooter extends Component {
 
           <form className="col s12"onSubmit={this.props.submitNewNote}>
                 <div className="input-field col s10">
-                  <input placeholder="Content" id="newPost" type="text" value={this.props.firstName}  onChange = {(event) => this.props.handleChange(event.target.id, event.target.value)} />
+                  <input placeholder="Content" id="newNote" type="text" value={this.props.firstName}  onChange = {(event) => this.props.handleChange(event.target.id, event.target.value)} />
                 </div>
 
                 <div className="input-field col s2">

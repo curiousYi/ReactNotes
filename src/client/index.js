@@ -26,12 +26,13 @@ class App extends Component {
             address: "",
             loggedIn: false,
             userID: "",
-            newPost: "",
+            newNote: "",
             notesByTime: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.submitNewNote = this.submitNewNote.bind(this);
       }
 
       componentWillMount() {
@@ -86,7 +87,6 @@ class App extends Component {
             });
             // console.log('state before setting state')
             // console.log(this.state)
-            this.forceUpdate();
           }.bind(this))   //trying to resolve this issue
 
       }
@@ -103,7 +103,22 @@ class App extends Component {
 
       //maybe make this generalizable
       submitNewNote(){
+        // event.preventDefault()
 
+        let newNoteObj = this.makeUserObj();
+        newNoteObj.newNote = this.state.newNote;
+        console.log('meesa say here da events', newNoteObj);
+        axios({
+          method: 'post',
+          url: '/notes',
+          data: newNoteObj
+          }).then(function (response) {
+
+            this.setState({
+              notesByTime: response.data.notesByTime
+            });
+
+          }.bind(this))   //trying to resolve this issue
       }
 
     render (){
@@ -140,6 +155,7 @@ class App extends Component {
                         />
                         <CreateNoteFooter
                             submitNewNote = {this.submitNewNote}
+                            handleChange = {this.handleChange}
                         />
             </div>
 
