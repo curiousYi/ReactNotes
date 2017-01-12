@@ -22,11 +22,16 @@ for(var i = 0; i < 5; i++){
     for(var j = 0; j < 5; j++){
         let fakeNote = fakeData.getFakeNote()
         dummyUser.notes.push(fakeNote);
-        let newObj = {firstName: dummyUser.firstName, lastName: dummyUser.lastName, note: fakeNote}
+        let newObj = {
+                      firstName: dummyUser.firstName,
+                      lastName: dummyUser.lastName,
+                      note: fakeNote,
+                      imageUrl: dummyUser.imageUrl
+                  }
         userBank.notesByTime.push(newObj);
     }
 
-    let uniqId = userBank.generateID(dummyUser.firstName+dummyUser.lastName);
+    let uniqId = userBank.generateID(dummyUser.firstName + dummyUser.lastName);
 
     userBank.store[uniqId] = dummyUser;
 }

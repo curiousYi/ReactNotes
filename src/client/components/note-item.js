@@ -8,9 +8,9 @@ const NoteItem = ({note}) => {
 
     return (
         <li className="collection-item avatar">
-          <img src={Faker.image.avatar()} alt="" className="circle"/>
-          <span className="title">Yi Chao</span>
-          <p>{Faker.lorem.sentence()}
+          <img src={note.imageUrl} alt="" className="circle"/>
+          <span className="title">{note.firstName} {note.lastName}</span>
+          <p>{note.note}
           </p>
           <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
         </li>

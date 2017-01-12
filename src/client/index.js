@@ -26,7 +26,8 @@ class App extends Component {
             address: "",
             loggedIn: false,
             userID: "",
-            newPost: ""
+            newPost: "",
+            notesByTime: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -42,8 +43,9 @@ class App extends Component {
             console.log('heeeeeey');
             console.log(response);
             if(response.data.loggedIn){
-                this.setState({loggedIn: response.data.loggedIn})
-
+                this.setState({loggedIn: response.data.loggedIn,
+                  notesByTime: response.data.notesByTime
+                })
                 //fetch resources
 
                 //set the state
@@ -130,6 +132,7 @@ class App extends Component {
                             age = {this.state.age}
                             address = {this.state.address}
                             handleChange = {this.handleChange}
+                            notesByTime = {this.state.notesByTime}
                         />
                         <CreateNoteFooter
                             handleChange = {this.handleChange}

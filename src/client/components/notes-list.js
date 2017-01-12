@@ -7,7 +7,7 @@ class notesList extends Component {
     super(props);
 
     console.log('notesList is loading!');
-
+    console.log(this.props)
     // axios({
     //   method: 'get',
     //   url: '/notes'
@@ -22,27 +22,19 @@ class notesList extends Component {
   }
 
   render() {
+    const notesByTime = this.props.notesByTime;
 
-    const noteItems = [1,2,3,4,5].map( (number) =>
+    const noteItems = notesByTime.map( (note, index) =>
       {
+        console.log('heres index', index)
         return (
             <NoteItem
             // onVideoSelect = {props.onVideoSelect}
-            key={number}
-            note={ number }
+            key={index}
+            note={note}
             />
         )
     })
-     // const noteItems = props.videos.map((video) =>
-     //     {
-     //        return (
-     //            <noteItem
-     //            onVideoSelect = {props.onVideoSelect}
-     //            key={video.etag}
-     //            video={ video }
-     //            />
-     //        )
-     //  }) ;
 
      return (
         <ul className = "collection">

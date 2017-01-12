@@ -116,7 +116,8 @@
 	            address: "",
 	            loggedIn: false,
 	            userID: "",
-	            newPost: ""
+	            newPost: "",
+	            notesByTime: []
 	        };
 
 	        _this.handleChange = _this.handleChange.bind(_this);
@@ -135,8 +136,9 @@
 	                console.log('heeeeeey');
 	                console.log(response);
 	                if (response.data.loggedIn) {
-	                    this.setState({ loggedIn: response.data.loggedIn });
-
+	                    this.setState({ loggedIn: response.data.loggedIn,
+	                        notesByTime: response.data.notesByTime
+	                    });
 	                    //fetch resources
 
 	                    //set the state
@@ -225,7 +227,8 @@
 	                        lastName: this.state.lastName,
 	                        age: this.state.age,
 	                        address: this.state.address,
-	                        handleChange: this.handleChange
+	                        handleChange: this.handleChange,
+	                        notesByTime: this.state.notesByTime
 	                    }),
 	                    _react2.default.createElement(_CreateNoteFooter2.default, {
 	                        handleChange: this.handleChange
@@ -21878,7 +21881,7 @@
 	    var _this = _possibleConstructorReturn(this, (notesList.__proto__ || Object.getPrototypeOf(notesList)).call(this, props));
 
 	    console.log('notesList is loading!');
-
+	    console.log(_this.props);
 	    // axios({
 	    //   method: 'get',
 	    //   url: '/notes'
@@ -21896,24 +21899,16 @@
 	  _createClass(notesList, [{
 	    key: 'render',
 	    value: function render() {
+	      var notesByTime = this.props.notesByTime;
 
-	      var noteItems = [1, 2, 3, 4, 5].map(function (number) {
+	      var noteItems = notesByTime.map(function (note, index) {
+	        console.log('heres index', index);
 	        return _react2.default.createElement(_noteItem2.default
 	        // onVideoSelect = {props.onVideoSelect}
-	        , { key: number,
-	          note: number
+	        , { key: index,
+	          note: note
 	        });
 	      });
-	      // const noteItems = props.videos.map((video) =>
-	      //     {
-	      //        return (
-	      //            <noteItem
-	      //            onVideoSelect = {props.onVideoSelect}
-	      //            key={video.etag}
-	      //            video={ video }
-	      //            />
-	      //        )
-	      //  }) ;
 
 	      return _react2.default.createElement(
 	        'ul',
@@ -21958,16 +21953,18 @@
 	    return _react2.default.createElement(
 	        'li',
 	        { className: 'collection-item avatar' },
-	        _react2.default.createElement('img', { src: _faker2.default.image.avatar(), alt: '', className: 'circle' }),
+	        _react2.default.createElement('img', { src: note.imageUrl, alt: '', className: 'circle' }),
 	        _react2.default.createElement(
 	            'span',
 	            { className: 'title' },
-	            'Yi Chao'
+	            note.firstName,
+	            ' ',
+	            note.lastName
 	        ),
 	        _react2.default.createElement(
 	            'p',
 	            null,
-	            _faker2.default.lorem.sentence()
+	            note.note
 	        ),
 	        _react2.default.createElement(
 	            'a',

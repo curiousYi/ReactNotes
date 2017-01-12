@@ -10,7 +10,6 @@ router.post('/', (req, res) => {
     //need to validate that the user name is unique
     //need to validate that the user name works
     //need to validate that the password is specific
-    console.log(chalk.green('you hit this'));
 
     let userID = userBank.generateID(req.body.firstName, req.body.lastName);
     let userObj = {
@@ -21,21 +20,15 @@ router.post('/', (req, res) => {
         address: req.body.address
     }
     userBank.store[userID] = userObj;
-    console.log(chalk.red('make sure this is right'), userObj);
     //TODO do not set this twice right? otherwise kind of pointless
     req.session.loggedIn = true;
     req.session.userID = userID;
+    req.session.notesByTime = userBank.notesByTime
     res.send(req.session); //sending back the cookie
 })
 
 router.get('/', (req, res)=> {
-    console.log(chalk.green('hey theeeerrre \n'), req.session);
-
     let requestUserID = req.session.userID
-    console.log('heres what were entering ', requestUserID)
-
-    console.log(userBank.store)
-    console.log('heres what were getting ', userBank.store[requestUserID]);
 
     if(userBank.store[requestUserID]){
         req.session.loggedIn = true;
