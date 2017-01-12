@@ -3,7 +3,22 @@
 A Simple CRUD App written in that contains a front-end and back-end powered by
 React and Express.
 
-## Major To-Dos
+## Installation
+Git clone the repo then run the following
+
+```sh
+$ npm install
+$ webpack
+```
+Go to http://localhost:3000 on your browser
+
+
+###
+Once you hit the landing page. Enter in the associated information. If the user doesn't exist
+the app will generate an account for that associated name. Post notes at the bottom of the page.
+
+
+#### Major To-Dos
 * Set-up Redux
 * Set-up CSS plugins for webpack + other features like code-splitting. Put Materialize in separate CSS file.
 * Hook up a database using Sequelize+Postgres
@@ -11,7 +26,7 @@ React and Express.
 * Use https
 * Use sockets to make it more real-time?
 
-### Minor To-Dos
+##### Minor To-Dos
 * Correct the references in the index html file to refer to server
 * Modify Routes to hook up with our "fake session storage "
 * Add validation to the server
@@ -27,13 +42,5 @@ React and Express.
 * Generalize the handleChange method in src/client/components/index.js generalize it so that it can handle an event from editting existing resources and posting a new note
 * Need to be able to delete the users and modify or whatever since we have the routes for those or whatever
 * Handle the issue where if there's a collision that they have to use a different name or username
+* Make things more DRY and refactor code
 
-#### Installation
-Git clone the repo then run the following
-
-```sh
-$ npm install
-$ webpack
-```
-
-Go to LocalHost:3000
